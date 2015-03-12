@@ -47,7 +47,8 @@ class Project extends Command implements CommandsInterface
         'template-path' => 'Specify a template path [optional]',
         'use-config-ini' => 'Use a ini file as configuration file [optional]',
         'trace' => 'Shows the trace of the framework in case of exception. [optional]',
-        'help' => 'Shows this help'
+        'help' => 'Shows this help',
+        'modules=s' => 'Name of modules to be created (Only for modules type)'
     );
 
     /**
@@ -65,6 +66,7 @@ class Project extends Command implements CommandsInterface
         $templatePath = $this->getOption(array('template-path'), null, TEMPLATE_PATH);
         $enableWebtools = $this->getOption(array('enable-webtools', 4), null, false);
         $useConfigIni = $this->getOption('use-config-ini');
+        $moduleNames = $this->getOption('modules',null, array('frontend'));
 
         $builder = new ProjectBuilder(array(
             'name' => $projectName,
@@ -72,7 +74,8 @@ class Project extends Command implements CommandsInterface
             'directory' => $projectPath,
             'enableWebTools' => $enableWebtools,
             'templatePath' => $templatePath,
-            'useConfigIni' => $useConfigIni
+            'useConfigIni' => $useConfigIni,
+            'modules' => $moduleNames
         ));
 
         return $builder->build();

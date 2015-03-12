@@ -21,6 +21,11 @@ try {
      */
     require __DIR__ . '/../config/modules.php';
 
+    /**
+     * Include autoloader
+     */
+    require __DIR__ . '/../config/loader.php';
+
     echo $application->handle()->getContent();
 
 } catch (Exception $e) {

@@ -1,6 +1,6 @@
 <?php
 
-namespace @@namespace@@\Frontend;
+namespace @@namespace@@\@@module@@;
 
 use Phalcon\Loader;
 use Phalcon\Mvc\View;
@@ -16,15 +16,6 @@ class Module implements ModuleDefinitionInterface
      */
     public function registerAutoloaders()
     {
-
-        $loader = new Loader();
-
-        $loader->registerNamespaces(array(
-            '@@namespace@@\Frontend\Controllers' => __DIR__ . '/controllers/',
-            '@@namespace@@\Frontend\Models' => __DIR__ . '/models/',
-        ));
-
-        $loader->register();
     }
 
     /**

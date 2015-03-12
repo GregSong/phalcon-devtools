@@ -3,9 +3,8 @@
 /**
  * Register application modules
  */
-$application->registerModules(array(
-    'frontend' => array(
-        'className' => '@@namespace@@\Frontend\Module',
-        'path' => __DIR__ . '/../apps/frontend/Module.php'
-    )
-));
+$application->registerModules(
+    array(
+    // ARCH DO NOT REMOVE THIS LINE
+@@modules@@)
+);

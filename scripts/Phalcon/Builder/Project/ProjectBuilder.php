@@ -74,13 +74,15 @@ abstract class ProjectBuilder
     * @param $putFile
     * @param $name
     */
-    protected function generateFile($getFile, $putFile, $name = '') {
+    protected function generateFile($getFile, $putFile, $name = '', $module = 'frontend') {
 
        if (file_exists($putFile) == false) {
             $str = file_get_contents($getFile);
             if($name) {
                 $str = preg_replace('/@@name@@/', $name, $str);
                 $str = preg_replace('/@@namespace@@/', ucfirst($name), $str);
+                $str = preg_replace('/@@module@@/', ucfirst($module), $str);
+                $str = preg_replace('/@@module_path@@/', $module, $str);
             }
             if(sizeof($this->variableValues) > 0) {
                 foreach($this->variableValues as $variableValueKey => $variableValue) {
@@ -90,6 +92,5 @@ abstract class ProjectBuilder
             }
             file_put_contents($putFile, $str);
         }
-
     }
 }

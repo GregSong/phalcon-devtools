@@ -5,6 +5,7 @@
  */
 
 use Phalcon\Mvc\Router;
+use Phalcon\Mvc\Router\Annotations;
 use Phalcon\Mvc\Url as UrlResolver;
 use Phalcon\DI\FactoryDefault;
 use Phalcon\Session\Adapter\Files as SessionAdapter;
@@ -19,10 +20,14 @@ $di = new FactoryDefault();
  */
 $di['router'] = function () {
 
-    $router = new Router();
+    $router = new Annotations(false);
 
-    $router->setDefaultModule('frontend');
-    $router->setDefaultNamespace('@@namespace@@\Frontend\Controllers');
+    $router->setDefaultModule('@@module_path@@');
+
+    // TODO Add specific route setting here
+
+    // ARCH DO NOT REMOVE THIS LINE
+    @@module_route@@
 
     return $router;
 };

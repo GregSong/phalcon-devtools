@@ -100,7 +100,25 @@ class Controller extends Component
 
         $controllerPath = $controllersDir . DIRECTORY_SEPARATOR . $className . "Controller.php";
 
-        $code = "<?php\n\n".$namespace."class ".$className."Controller extends ".$baseClass."\n{\n\n\tpublic function indexAction()\n\t{\n\n\t}\n\n}\n\n";
+        if(isset($this->_options['module'])){
+            $module = $this->_options['module'];
+            $classAnnotation = "
+/**
+ * @RoutePrefix(\"/$module/$name\")
+ */
+";
+            $actionAnnotation = "
+    /**
+    * @Get(\"/index\")
+    */
+    ";
+        } else {
+            $classAnnotation = '';
+            $actionAnnotation = '';
+        }
+
+
+        $code = "<?php\n\n".$namespace. $classAnnotation . "class ".$className."Controller extends ".$baseClass."\n{\n\n\t $actionAnnotation public function indexAction()\n\t{\n\n\t}\n\n}\n\n";
         $code = str_replace("\t", "    ", $code);
 
         if (!file_exists($controllerPath) || $this->_options['force'] == true) {
